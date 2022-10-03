@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Menu = ({isLoggedIn, onClick}) => {
@@ -7,14 +8,20 @@ const Menu = ({isLoggedIn, onClick}) => {
     onClick()
   }
 
+  const navigate = useNavigate();
+
   return  (
     <Container>
       <LoginContainer>
         {isLoggedIn && (<LogOut onClick={logout}>Logout</LogOut>)}
       </LoginContainer>
       <RoutesContainer>
-        <button>Cards</button>
-        <button>Search</button>
+        <Button onClick={ () => navigate('cards')} >
+          Cards
+        </Button>
+        <Button onClick={() => navigate('search')} >
+          Search
+        </Button>
       </RoutesContainer>
     </Container>
   )
@@ -52,3 +59,5 @@ const RoutesContainer = styled.div`
   flex-direction: column;
   gap: 10px;
 `
+
+const Button = styled.button``
